@@ -1,12 +1,12 @@
 <template>
-  <div>
-    Map Page :)
-  </div>
+<div>
+  Plots page :)
+</div>
 </template>
 
 <script>
 export default {
-  name: "Map"
+  name: "PlotsPage"
 }
 </script>
 

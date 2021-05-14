@@ -1,28 +1,28 @@
-import Map from "@/components/Map";
-import DataTable from "@/components/DataTable";
-import Plots from "@/components/Plots";
-import About from "@/components/About";
+import MapPage from "@/pages/MapPage";
+import DataTablePage from "@/pages/DataTablePage";
+import PlotsPage from "@/pages/PlotsPage";
+import AboutPage from "@/pages/AboutPage";
 
 export default [
   {
     path: '/',
     name: 'Map',
-    component: Map,
+    component: MapPage,
     alias: '/map',
   },
   {
     path: '/table',
     name: 'DataTable',
-    component: DataTable,
+    component: DataTablePage,
   },
   {
     path: '/plots',
     name: 'Plots',
-    component: Plots,
+    component: PlotsPage,
   },
   {
     path: '/about',
     name: 'About',
-    component: About,
+    component: AboutPage,
   },
 ];

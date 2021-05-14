@@ -1,12 +1,12 @@
 <template>
-<div>
-  Data Table Page :)
-</div>
+  <div>
+    Map Page :)
+  </div>
 </template>
 
 <script>
 export default {
-  name: "DataTable"
+  name: "MapPage"
 }
 </script>
 
