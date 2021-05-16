@@ -19,7 +19,8 @@ def earthquakes():
 
 
 def make_earthquake_request(payload):
-    return requests.get("https://quakesearch.geonet.org.nz/geojson", params=payload).json()
+    payload_with_bbox = dict([("bbox", "164,-49,180,-32")], **payload)  # Provides default value for bbox
+    return requests.get("https://quakesearch.geonet.org.nz/geojson", params=payload_with_bbox).json()
 
 
 if __name__ == '__main__':
