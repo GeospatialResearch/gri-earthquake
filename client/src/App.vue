@@ -1,10 +1,10 @@
 <template>
-  <v-app id="app">
+  <div id="app">
     <nav-bar/>
-    <v-content>
+    <div>
       <router-view/>
-    </v-content>
-  </v-app>
+    </div>
+  </div>
 </template>
 
 <script>
