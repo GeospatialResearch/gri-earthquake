@@ -3,7 +3,8 @@ import VueResource from "vue-resource"
 import VueRouter from "vue-router";
 import App from '@/App.vue'
 import routes from "@/routes";
-import store from "./store";
+import store from "@/store";
+import "@/assets/base-style.css"
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
