@@ -1,0 +1,1 @@
+export const SET_EARTHQUAKES = 'SET_EARTHQUAKES';
