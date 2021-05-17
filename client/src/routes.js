@@ -7,8 +7,7 @@ export default [
   {
     path: '/',
     name: 'Map',
-    component: MapPage,
-    alias: '/map',
+    component: MapPage
   },
   {
     path: '/table',
@@ -25,4 +24,8 @@ export default [
     name: 'About',
     component: AboutPage,
   },
+  {
+    path: '*',
+    redirect: '/'
+  }
 ];
