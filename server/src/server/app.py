@@ -30,7 +30,8 @@ def filtered_earthquake_data(eq_data):
         geom = feature['geometry']
         return {
             'publicid': props['publicid'],
-            'coordinates': geom['coordinates'],
+            'latitude': geom['coordinates'][0],
+            'longitude': geom['coordinates'][1],
             'magnitude': props['magnitude'],
             'depth': props['depth']
         }
