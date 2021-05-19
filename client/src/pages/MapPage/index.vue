@@ -1,20 +1,16 @@
 <template>
   <div>
-    <h1>Map Page :)))</h1>
-    <div>
-      {{ startDate }}
-      {{ endDate }}
-      {{ earthquakes }}
-    </div>
+    <range-selector/>
   </div>
 </template>
 
 <script>
 import {mapState} from 'vuex'
+import RangeSelector from "./RangeSelector";
 
 export default {
   name: "MapPage",
-
+  components: {RangeSelector},
   data: function () {
     return {
     }
