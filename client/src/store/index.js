@@ -27,7 +27,7 @@ export default new Vuex.Store({
       commit(types.SET_LOADING_STATUS, true);
       getEarthquakes(state.startDate, state.endDate).then(earthquakes => {
         commit(types.SET_EARTHQUAKES, earthquakes)
-        commit(types.SET_LOADING_STATUS, true)
+        commit(types.SET_LOADING_STATUS, false)
       })
     }
   }
