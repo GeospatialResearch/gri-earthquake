@@ -1,27 +1,33 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import {SET_EARTHQUAKES} from "./types";
+import * as types from "./types";
 import {getEarthquakes} from "../requests";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    loadingStatus: false,
     startDate: '2021-05-01',
     endDate: '2021-05-02',
     earthquakes: []
   },
 
   mutations: {
-    [SET_EARTHQUAKES](state, earthquakes) {
+    [types.SET_EARTHQUAKES](state, earthquakes) {
       state.earthquakes = earthquakes
+    },
+    [types.SET_LOADING_STATUS](state, loadingStatus) {
+      state.loadingStatus = loadingStatus
     },
   },
 
   actions: {
     updateEarthquakes({ commit, state }) {
+      commit(types.SET_LOADING_STATUS, true);
       getEarthquakes(state.startDate, state.endDate).then(earthquakes => {
-        commit('SET_EARTHQUAKES', earthquakes)
+        commit(types.SET_EARTHQUAKES, earthquakes)
+        commit(types.SET_LOADING_STATUS, true)
       })
     }
   }
