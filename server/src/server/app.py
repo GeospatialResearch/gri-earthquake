@@ -1,4 +1,5 @@
 import requests
+from itertools import count
 from flask import Flask
 from flask import request
 from flask_cors import CORS
@@ -29,13 +30,16 @@ def filtered_earthquake_data(eq_data):
         props = feature['properties']
         geom = feature['geometry']
         return {
+            'index': next(counter),
             'publicid': props['publicid'],
+            'origintime': props['origintime'],
             'latitude': geom['coordinates'][0],
             'longitude': geom['coordinates'][1],
             'magnitude': props['magnitude'],
             'depth': props['depth']
         }
 
+    counter = count(start=1)
     features = eq_data['features']
     filtered_features = list(map(json_filter, features))
     return {'earthquakes': filtered_features}
