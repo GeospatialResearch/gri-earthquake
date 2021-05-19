@@ -1,22 +1,17 @@
 <template>
-  <div class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="navbar-header">
-      <span class="navbar-brand">NZ Earthquake viewer</span>
-    </div>
-    <ul class="nav navbar-nav">
-      <li :class="{ active: this.$route.name === 'Map' }">
-        <router-link :to="{name: 'Map'}">Map</router-link>
-      </li>
-      <li :class="{ active: this.$route.name === 'DataTable' }">
-        <router-link :to="{name: 'DataTable'}">Data table</router-link>
-      </li>
-      <li :class="{ active: this.$route.name === 'Plots' }">
-        <router-link :to="{name: 'Plots'}">Plots</router-link>
-      </li>
-      <li :class="{ active: this.$route.name === 'About' }">
-        <router-link :to="{name: 'About'}">About</router-link>
-      </li>
-    </ul>
+  <div>
+    <b-navbar type="light" variant="light">
+      <b-navbar-toggle target="nav-text-collapse"/>
+      <b-navbar-brand :to="{name: 'Map'}">NZ Earthquake Viewer</b-navbar-brand>
+      <b-collapse id="nav-text-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item :to="{name: 'Map'}">Map</b-nav-item>
+          <b-nav-item :to="{name: 'DataTable'}">Data Table</b-nav-item>
+          <b-nav-item :to="{name: 'Plots'}">Plots</b-nav-item>
+          <b-nav-item :to="{name: 'About'}">About</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </div>
 </template>
 
@@ -27,6 +22,5 @@ export default {
 </script>
 
 <style scoped>
-
 
 </style>
