@@ -1,27 +1,13 @@
 <template>
   <div>
-    <table>
-      <thead>
-        <tr>
-         <th scope="col"/> <!--  For the index column-->
-          <th v-for="header in tableHeaders"
-              :key="header"
-              scope="col">
-            {{ header }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(earthquake, i) in earthquakes"
-            :key="earthquake.publicid">
-          <td>{{ i }}</td>
-          <td v-for="[key, value] of Object.entries(earthquake)"
-              :key="key">
-            {{ value }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <b-table striped
+             hover
+             :items="earthquakes"
+             :fields="fields"
+             :busy.sync="loadingStatus"
+             primary-key="publicid"
+    >
+    </b-table>
   </div>
 </template>
 
@@ -31,8 +17,23 @@ import {mapState} from "vuex";
 export default {
   name: "DataTablePage",
 
+  data: function () {
+    return {
+      fields: [
+        { key: 'index', sortable: true },
+        { key: 'publicid', sortable: true, label: 'Public ID' },
+        { key: 'origintime', sortable: true, label: 'Origin Time'},
+        { key: 'depth', sortable: true },
+        { key: 'latitude', sortable: true },
+        { key: 'longitude', sortable: true },
+        { key: 'magnitude', sortable: true },
+      ]
+    }
+  },
+
   computed: {
     ...mapState([
+      'loadingStatus',
       'earthquakes',
       'startDate',
       'endDate'
