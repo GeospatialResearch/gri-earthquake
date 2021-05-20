@@ -10,6 +10,8 @@ import RangeSelector from "./RangeSelector";
 
 export default {
   name: "MapPage",
+  title: "Map",
+
   components: {RangeSelector},
   data: function () {
     return {

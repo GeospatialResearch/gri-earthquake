@@ -8,11 +8,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import App from '@/App.vue'
 import routes from "@/routes";
 import store from "@/store";
+import title from "./mixins/title";
 import "@/assets/base-style.css"
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
+
+Vue.mixin(title)
 
 Vue.http.options.emulateJson = true;
 Vue.config.productionTip = false;

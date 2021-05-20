@@ -6,7 +6,9 @@
 
 <script>
 export default {
-  name: "PlotsPage"
+  name: "PlotsPage",
+  title: "Plots",
+
 }
 </script>
 

@@ -57,6 +57,7 @@ import {mapState} from "vuex";
 
 export default {
   name: "DataTablePage",
+  title: "Data Table",
 
   data: function () {
     return {

@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    titlePrefix: 'NZ Earthquake Viewer',
     loadingStatus: false,
     startDate: '2021-05-01',
     endDate: '2021-05-02',
