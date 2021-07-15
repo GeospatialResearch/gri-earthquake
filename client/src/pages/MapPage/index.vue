@@ -5,7 +5,7 @@
         lat="-43.523392915353384"
         lng="172.58414599255107"
     />
-    <range-selector/>
+    <RangeSelector/>
   </div>
 </template>
 

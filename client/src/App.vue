@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <nav-bar/>
+    <AppNavBar />
     <div class="container-fluid">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import NavBar from "@/components/NavBar";
+import AppNavBar from "@/components/AppNavBar";
 
 export default {
   name: 'App',
   components: {
-    NavBar,
+    AppNavBar,
   },
   created() {
     this.$store.dispatch('updateEarthquakes')
