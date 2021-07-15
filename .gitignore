@@ -579,3 +579,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,pycharm,windows,linux,web,vue,vuejs,python,flask,node,git
+/client/public/decoder.bundle.js

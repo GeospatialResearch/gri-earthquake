@@ -1,8 +1,9 @@
 # client
 
-## Project setup
+## Project setup and node installation
 ```
-npm install
+npm ci
+npm run build:harp-gl-decoder 
 ```
 
 ### Compiles and hot-reloads for development
