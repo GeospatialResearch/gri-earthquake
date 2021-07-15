@@ -72,7 +72,7 @@ This project consists of two parts, a client web app in `client/`, and a web ser
         ```bash
         # From project root
         cd client/
-        node run serve
+        npm run serve
         ```
     
 
