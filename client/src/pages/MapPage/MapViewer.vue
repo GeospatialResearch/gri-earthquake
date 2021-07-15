@@ -52,13 +52,18 @@ export default {
     const ui = new MapControlsUI(controls, {projectionSwitch: true});
     this.$refs.map.parentElement.appendChild(ui.domElement);
 
-    const omvDataSource = new OmvDataSource({
-      baseUrl: "https://xyz.api.here.com/tiles/herebase.02",
-      apiFormat: APIFormat.XYZOMV,
-      styleSetName: "tilezen",
-      authenticationCode: this.token,
-    });
-    this.map.addDataSource(omvDataSource);
+    if (this.token) {
+      const omvDataSource = new OmvDataSource({
+        baseUrl: "https://xyz.api.here.com/tiles/herebase.02",
+        apiFormat: APIFormat.XYZOMV,
+        styleSetName: "tilezen",
+        authenticationCode: this.token,
+      });
+      this.map.addDataSource(omvDataSource);
+    } else {
+      console.error(`Invalid HERE XYZ token: ${this.token}. Make sure you have a VUE_APP_HEREAPI environment variable set. Check the README for more info`);
+    }
+
     this.map.lookAt({
       target: new GeoCoordinates(Number(this.lat), Number(this.lng)),
       zoomLevel: 12

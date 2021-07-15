@@ -12,6 +12,8 @@ This project consists of two parts, a client web app in `client/`, and a web ser
 * [Python3](https://www.python.org/downloads/)
 * [pip](https://pypi.org/project/pip/) (**P**ip **I**nstalls **P**ackages - Python package manager)
 * [Node.JS / npm](https://nodejs.org) (**N**ode **P**ackage **M**anager)
+* [Here API Freemium Project](https://developer.here.com/projects) (Project Registration for API for OSM tile data for harp.gl)
+* [Here XYZ API Access Management Token](https://xyz.api.here.com/token-ui/accessmgmt.html) (Free API for map data for harp.gl)
 
 
 
@@ -51,6 +53,13 @@ This project consists of two parts, a client web app in `client/`, and a web ser
     # Build decoder bundle
     npm run build:harp-gl-decoder
     ```
+   At this stage you must also have an access token for mapping. This can be created for free by first creating a 
+   [Here API Freemium Project](https://developer.here.com/projects).  
+   After this you must retrieve a [Here XYZ API Access Management Token](https://xyz.api.here.com/token-ui/accessmgmt.html).  
+   Then create a local environment file `proj_root/client/.env.local` and fill it with the token copied from the site above.
+   ```dotenv
+   VUE_APP_HEREAPI=enter_your_access_token_here
+   ```
 
 3. Running development app:
     1. Server:
