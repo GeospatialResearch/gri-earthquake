@@ -74,6 +74,9 @@ This project consists of two parts, a client web app in `client/`, and a web ser
         cd client/
         npm run serve
         ```
+      
+If you wish to remove excessive warnings about source maps from the dev console in your browser, then disable JavaScript source maps.  
+To do this in Chrome go to dev tools `Settings > Preferences > Sources` and disable `Enable JavaScript source maps`
     
 
 
