@@ -1,4 +1,5 @@
 <template>
+  <!-- Provides a canvas to render the Harp.GL map -->
   <div>
     <canvas ref="map" style="width: 100vw; height: 100vh"></canvas>
   </div>
@@ -15,13 +16,17 @@ import {GeoCoordinates} from "@here/harp-geoutils";
 export default {
   name: "MapViewer",
   props: {
+    /** The HERE XYZ access token */
     token: String,
+    /** Initial latitude */
     lat: [String, Number],
+    /** Initial longitude */
     lng: [String, Number],
   },
 
   data() {
     return {
+      /** Styles for map */
       customisedTheme: {
         extends: "https://unpkg.com/@here/harp-map-theme@latest/resources/berlin_tilezen_effects_streets.json",
 
@@ -44,6 +49,7 @@ export default {
   },
 
   mounted() {
+    // Create map and controls
     this.map = new MapView({
       canvas: this.$refs.map,
       theme: this.customisedTheme,
@@ -52,6 +58,7 @@ export default {
     const ui = new MapControlsUI(controls, {projectionSwitch: true});
     this.$refs.map.parentElement.appendChild(ui.domElement);
 
+    // Retrieve tiled base map
     if (this.token) {
       const omvDataSource = new OmvDataSource({
         baseUrl: "https://xyz.api.here.com/tiles/herebase.02",
@@ -77,10 +84,12 @@ export default {
   },
 
   methods: {
+    /** Convert array of positions into GeoJSON Points */
     createPoints(positions) {
       return GeoJSON.parse(positions, {Point: ["lat", "lng"]});
     },
 
+    /** Add markers to maps at each position */
     dropPoints(name, positions) {
       const geoJsonDataProvider = new GeoJsonDataProvider(name, this.createPoints(positions));
       const geoJsonDataSource = new OmvDataSource({

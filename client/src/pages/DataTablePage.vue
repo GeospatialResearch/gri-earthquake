@@ -1,4 +1,5 @@
 <template>
+  <!-- Page showing all data about earthquakes in a table -->
   <b-container fluid>
     <div>
       <b-form-group
@@ -65,8 +66,8 @@ export default {
       totalRows: 0,
       perPage: 10,
       pageOptions: [10, 25, 50, 100],
-      filter: "",
-      fields: [
+      filter: "", // Current search query
+      fields: [ // List all fields used in the table
         {key: 'index', sortable: true},
         {key: 'publicid', sortable: true, label: 'Public ID'},
         {key: 'origintime', sortable: true, label: 'Origin Time'},
@@ -78,6 +79,7 @@ export default {
     }
   },
 
+  // Map store access: this.$store.state.X -> this.X
   computed: {
     ...mapState([
       'loadingStatus',
@@ -88,6 +90,7 @@ export default {
   },
 
   watch: {
+    // Set table when loading is finished
     loadingStatus: function (isLoading) {
       if (!isLoading) {
         this.totalRows = this.earthquakes.length;

@@ -3,6 +3,10 @@ import DataTablePage from "@/pages/DataTablePage";
 import PlotsPage from "@/pages/PlotsPage";
 import AboutPage from "@/pages/AboutPage";
 
+
+/**
+ * Sets router url endpoints to specific pages
+ */
 export default [
   {
     path: '/',

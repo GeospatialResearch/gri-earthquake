@@ -1,4 +1,5 @@
 <template>
+<!-- Navigation Bar to allow switching between different pages in the app -->
   <div>
     <b-navbar type="light" variant="light">
       <b-navbar-toggle target="nav-text-collapse"/>

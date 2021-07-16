@@ -1,4 +1,9 @@
+// Mixin to append name of component to name of app and makes this the webpage title
+
 export default {
+  /**
+   * Changes the document title if a component has a data variable `title`
+   */
   created: function () {
     const pageTitle = getPageTitle(this);
     if (pageTitle) {

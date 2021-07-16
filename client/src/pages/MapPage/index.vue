@@ -1,4 +1,5 @@
 <template>
+<!-- Page for the map and any controls relevant to it -->
   <div>
     <MapViewer
         :token="hereApiToken"
@@ -26,6 +27,7 @@ export default {
   },
 
   computed: {
+    // Map store access: this.$store.state.X -> this.X
     ...mapState([
       'earthquakes',
       'startDate',

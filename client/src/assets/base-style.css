@@ -1,3 +1,4 @@
+/* The basic style sheet for the entire app */
 input[type="number"] {
     max-width: 80%;
 }
