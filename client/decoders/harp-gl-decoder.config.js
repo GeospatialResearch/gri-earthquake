@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   target: 'webworker',
   entry: {
-    decoder: './harp-gl-decoders.js',
+    decoder: './decoders/harp-gl-decoders.js',
   },
   output: {
     path: path.join(process.cwd(), 'public'),

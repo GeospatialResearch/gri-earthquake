@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:harp-gl-decoder": "webpack --config harp-gl-decoder.config.js",
+    "build:harp-gl-decoder": "webpack --config decoders/harp-gl-decoder.config.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
