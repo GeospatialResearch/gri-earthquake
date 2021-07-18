@@ -48,8 +48,8 @@ This project consists of two parts, a client web app in `client/`, and a web ser
     ```bash
     # From the root directory of the project
     cd client/
-    # Install node packages from package-lock.json
-    npm ci
+    # Install node packages from package.json
+    npm install
     # Build decoder bundle
     npm run build:harp-gl-decoder
     ```
