@@ -91,23 +91,27 @@ To do this in Chrome go to dev tools `Settings > Preferences > Sources` and disa
 This is a work in progress. We are using nginx and docker to deploy our application.
 Please see [this issue](https://github.com/LukeParky/gri-earthquake/issues/9) for progress details.
 
-
-## Work to be completed
-Please see our [Issue Tracker](https://github.com/LukeParky/gri-earthquake/issues)   for details on coming features and additions to the software.
-
-
-## Contacts
-
-Maintainer: Luke Parkinson [@LukeParky](https://github.com/LukeParky/)
-[luke.parkinson@canterbury.ac.nz](mailto:luke.parkinson@canterbury.ac.nz)
+### Repository structure
+```tree
+gri-earthquake
+└───client # files used in the client-side application, run in the user's browser  
+└───server # files used in the server-side application, used to store data and perform intensive tasks
+```
+See also: [client README](client/README.md) and [server README](server/README.md)
 
 ## Contributions
+Please see our [Issue Tracker](https://github.com/LukeParky/gri-earthquake/issues)   for details on coming features and additions to the software.
 
 There is no current expectations of contributions to this project. We accept input in code reviews now. 
 If you would like to be involved in the project, please contact the maintainer.  
 The Geospatial Web Framework that is
 being created alongside this project will be opened to the public in the coming months. We will
 accept contributions to that project in the future.
+
+
+## Contacts
+Maintainer: Luke Parkinson [@LukeParky](https://github.com/LukeParky/)
+[luke.parkinson@canterbury.ac.nz](mailto:luke.parkinson@canterbury.ac.nz)
 
 ## License
 
