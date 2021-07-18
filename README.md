@@ -115,4 +115,4 @@ Maintainer: Luke Parkinson [@LukeParky](https://github.com/LukeParky/)
 
 ## License
 
-[MIT](https://LukeParky/gri-earthquake/blob/master/LICENSE)
+[MIT](LICENSE)
