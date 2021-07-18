@@ -77,7 +77,10 @@ This project consists of two parts, a client web app in `client/`, and a web ser
       
 If you wish to remove excessive warnings about source maps from the dev console in your browser, then disable JavaScript source maps.  
 To do this in Chrome go to dev tools `Settings > Preferences > Sources` and disable `Enable JavaScript source maps`
-    
+
+
+## Work to be completed
+Please see our [Issue Tracker](https://github.com/LukeParky/gri-earthquake/issues)   for details on coming features and additions to the software.
 
 
 ## Contacts
@@ -87,8 +90,10 @@ Maintainer: Luke Parkinson [@LukeParky](https://github.com/LukeParky/)
 
 ## Contributions
 
-There is no current expectations of contributions to this project. We accept input in code reviews now. The Geospatial
-Web Framework that is being created alongside this project will be opened to the public in the coming months. We will
+There is no current expectations of contributions to this project. We accept input in code reviews now. 
+If you would like to be involved in the project, please contact the maintainer.  
+The Geospatial Web Framework that is
+being created alongside this project will be opened to the public in the coming months. We will
 accept contributions to that project in the future.
 
 ## License
