@@ -1,7 +1,10 @@
 # GRI-Earthquake
 
 GRI-Earthquake is an example project used to develop the work-in-progress Geospatial Web Framework developed in the
-Geospatial Research Institute Toi Hanagarau.
+Geospatial Research Institute Toi Hanagarau. This application is used to visualise the location, magnitude, and depth of earthquakes within New Zealand.
+
+![image](https://user-images.githubusercontent.com/41398636/126084844-1bad1906-8784-4f9b-93ec-df0e5e995dd6.png)
+
 
 ## Setup
 
