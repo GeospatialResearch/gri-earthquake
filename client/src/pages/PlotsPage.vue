@@ -1,4 +1,5 @@
 <template>
+<!-- Page to show earthquake data in plots -->
   <b-container fluid>
     <b-row>
       <b-col>

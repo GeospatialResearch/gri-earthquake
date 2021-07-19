@@ -8,8 +8,9 @@
       <excludeFolder url="file://$MODULE_DIR$/client/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 (earthquakes)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.9 (gri-earthquake)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bootstrap" level="application" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />

@@ -1,21 +1,23 @@
 <template>
+<!-- Root component for the app -->
   <div id="app">
-    <nav-bar/>
+    <AppNavBar />
     <div class="container-fluid">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import NavBar from "@/components/NavBar";
+import AppNavBar from "@/components/AppNavBar";
 
 export default {
   name: 'App',
   components: {
-    NavBar,
+    AppNavBar,
   },
   created() {
+    // On creation of app initialise VueX store with data from necessary external APIs
     this.$store.dispatch('updateEarthquakes')
   }
 }
