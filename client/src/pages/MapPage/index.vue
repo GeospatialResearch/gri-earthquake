@@ -1,12 +1,12 @@
 <template>
-<!-- Page for the map and any controls relevant to it -->
+  <!-- Page for the map and any controls relevant to it -->
   <div>
     <MapViewer
         :token="hereApiToken"
         lat="-43.523392915353384"
         lng="172.58414599255107"
     />
-    <RangeSelector/>
+    <RangeSelector />
   </div>
 </template>
 

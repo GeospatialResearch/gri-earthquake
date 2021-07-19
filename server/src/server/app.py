@@ -27,6 +27,7 @@ def make_earthquake_request(payload):
 
 def filtered_earthquake_data(eq_data):
     """Flattens and simplifies earthquake GeoJSON to a very simplified format"""
+
     def json_filter(feature):
         props = feature['properties']
         geom = feature['geometry']

@@ -1,8 +1,8 @@
 <template>
-<!-- Navigation Bar to allow switching between different pages in the app -->
+  <!-- Navigation Bar to allow switching between different pages in the app -->
   <div>
     <b-navbar type="light" variant="light">
-      <b-navbar-toggle target="nav-text-collapse"/>
+      <b-navbar-toggle target="nav-text-collapse" />
       <b-navbar-brand :to="{name: 'Map'}">NZ Earthquake Viewer</b-navbar-brand>
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav>

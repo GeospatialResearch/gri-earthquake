@@ -1,5 +1,5 @@
 <template>
-<!-- Root component for the app -->
+  <!-- Root component for the app -->
   <div id="app">
     <AppNavBar />
     <div class="container-fluid">

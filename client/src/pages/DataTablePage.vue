@@ -10,8 +10,8 @@
           <b-form-input
               id="filter-input"
               v-model="filter"
-              type="search"
               placeholder="Type to Search"
+              type="search"
           />
           <b-input-group-append>
             <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
@@ -32,22 +32,22 @@
       </b-form-group>
     </div>
     <b-table
-        :items="earthquakes"
-        :fields="fields"
         :busy.sync="loadingStatus"
         :current-page="currentPage"
-        :per-page="perPage"
+        :fields="fields"
         :filter="filter"
-        @filtered="onFiltered"
+        :items="earthquakes"
+        :per-page="perPage"
+        hover
         primary-key="publicid"
         striped
-        hover
+        @filtered="onFiltered"
     />
     <div>
       <b-pagination
           v-model="currentPage"
-          :total-rows="totalRows"
           :per-page="perPage"
+          :total-rows="totalRows"
       />
     </div>
   </b-container>

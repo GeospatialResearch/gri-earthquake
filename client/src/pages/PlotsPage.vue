@@ -1,17 +1,17 @@
 <template>
-<!-- Page to show earthquake data in plots -->
+  <!-- Page to show earthquake data in plots -->
   <b-container fluid>
     <b-row>
       <b-col>
-        <Plotly :data="plotData"/>
+        <Plotly :data="plotData" />
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <Plotly :data="plotData"/>
+        <Plotly :data="plotData" />
       </b-col>
       <b-col>
-        <Plotly :data="plotData"/>
+        <Plotly :data="plotData" />
       </b-col>
     </b-row>
   </b-container>
