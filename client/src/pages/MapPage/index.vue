@@ -29,7 +29,6 @@ export default {
   computed: {
     // Map store access: this.$store.state.X -> this.X
     ...mapState([
-      'earthquakes',
       'startDate',
       'endDate'
     ])

@@ -12,6 +12,7 @@ import {MapControls, MapControlsUI} from "@here/harp-map-controls"
 import {APIFormat, GeoJsonDataProvider} from "@here/harp-vectortile-datasource";
 import {OmvDataSource} from "@here/harp-omv-datasource";
 import {GeoCoordinates} from "@here/harp-geoutils";
+import {mapState} from "vuex";
 
 export default {
   name: "MapViewer",
@@ -34,7 +35,7 @@ export default {
           markerStyleSet: [{
             when: "$geometryType == 'point'",
             technique: "circles",
-            renderOrder: 1,
+            renderOrder: 1000, // Render the markers above other objects on the map
             attr: {
               color: "#7ED321",
               size: 15
@@ -46,6 +47,14 @@ export default {
       },
 
     }
+  },
+
+  computed: {
+    // Map store access: this.$store.state.X -> this.X
+    ...mapState([
+      'earthquakes',
+      'loadingStatus'
+    ]),
   },
 
   mounted() {
@@ -76,17 +85,27 @@ export default {
       zoomLevel: 12
     });
 
-    this.dropPoints("example-points", [
-      {lat: 37.7497, lng: -121.4252},
-      {lat: 37.7597, lng: -121.4352},
-      {lat: -43.523392915353384, lng: 172.58414599255107}
-    ]);
+    this.addEarthquakePoints();
+  },
+
+  watch: {
+    loadingStatus: function (newLoadingStatus) {
+      if (!newLoadingStatus) {
+        this.addEarthquakePoints();
+      }
+    }
   },
 
   methods: {
+    addEarthquakePoints() {
+      if (!this.loadingStatus) {
+        this.dropPoints('earthquakes', this.earthquakes);
+      }
+    },
+
     /** Convert array of positions into GeoJSON Points */
     createPoints(positions) {
-      return GeoJSON.parse(positions, {Point: ["lat", "lng"]});
+      return GeoJSON.parse(positions, {Point: ["longitude", "latitude"]});
     },
 
     /** Add markers to maps at each position */
