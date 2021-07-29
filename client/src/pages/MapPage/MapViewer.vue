@@ -1,7 +1,7 @@
 <template>
   <!-- Provides a canvas to render the Harp.GL map -->
   <div>
-    <canvas ref="map" style="width: 100vw; height: 100vh"></canvas>
+    <canvas ref="map"></canvas>
   </div>
 </template>
 
@@ -58,27 +58,8 @@ export default {
   },
 
   mounted() {
-    // Create map and controls
-    this.map = new MapView({
-      canvas: this.$refs.map,
-      theme: this.customisedTheme,
-    });
-    const controls = new MapControls(this.map);
-    const ui = new MapControlsUI(controls, {projectionSwitch: true});
-    this.$refs.map.parentElement.appendChild(ui.domElement);
-
-    // Retrieve tiled base map
-    if (this.token) {
-      const omvDataSource = new OmvDataSource({
-        baseUrl: "https://xyz.api.here.com/tiles/herebase.02",
-        apiFormat: APIFormat.XYZOMV,
-        styleSetName: "tilezen",
-        authenticationCode: this.token,
-      });
-      this.map.addDataSource(omvDataSource);
-    } else {
-      console.error(`Invalid HERE XYZ token: ${this.token}. Make sure you have a VUE_APP_HEREAPI environment variable set. Check the README for more info`);
-    }
+    this.initialiseMapCanvas();
+    this.initaliseBaseDataSources();
 
     this.map.lookAt({
       target: new GeoCoordinates(Number(this.lat), Number(this.lng)),
@@ -97,6 +78,43 @@ export default {
   },
 
   methods: {
+    /** Adds the map and control elements to the page, ready for a data source*/
+    initialiseMapCanvas() {
+      this.map = new MapView({
+        canvas: this.$refs.map,
+        theme: this.customisedTheme,
+      });
+
+      // Add control buttons to map
+      const controls = new MapControls(this.map);
+      const ui = new MapControlsUI(controls, {projectionSwitch: true});
+      this.$refs.map.parentElement.appendChild(ui.domElement);
+
+      // Make map fullscreen
+      this.map.resize(window.innerWidth, window.innerHeight);
+
+      // Make map sizing responsive to window size
+      window.addEventListener("resize", () => {
+        this.map.resize(window.innerWidth, window.innerHeight);
+      });
+    },
+
+    /** Adds terrain, street, building, etc. data sources to the map */
+    initaliseBaseDataSources() {
+      // Retrieve tiled base map
+      if (this.token) {
+        const omvDataSource = new OmvDataSource({
+          baseUrl: "https://xyz.api.here.com/tiles/herebase.02",
+          apiFormat: APIFormat.XYZOMV,
+          styleSetName: "tilezen",
+          authenticationCode: this.token,
+        });
+        this.map.addDataSource(omvDataSource);
+      } else {
+        console.error(`Invalid HERE XYZ token: ${this.token}. Make sure you have a VUE_APP_HEREAPI environment variable set. Check the README for more info`);
+      }
+    },
+
     addEarthquakePoints() {
       if (!this.loadingStatus) {
         this.dropPoints('earthquakes', this.earthquakes);
@@ -123,5 +141,13 @@ export default {
 </script>
 
 <style scoped>
-
+/* Renders the canvas below other objects and full screen */
+div.full-screen-map > canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
 </style>
