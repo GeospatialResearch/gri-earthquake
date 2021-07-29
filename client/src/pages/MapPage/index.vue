@@ -2,11 +2,12 @@
   <!-- Page for the map and any controls relevant to it -->
   <div>
     <MapViewer
+        class="full-screen-map"
         :token="hereApiToken"
         lat="-43.523392915353384"
         lng="172.58414599255107"
     />
-    <RangeSelector />
+    <RangeSelector id="range-selector" class="bg-white" />
   </div>
 </template>
 
@@ -40,5 +41,9 @@ export default {
 </script>
 
 <style scoped>
-
+#range-selector {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
 </style>

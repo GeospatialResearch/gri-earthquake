@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="range-selector" class="card">
     <div>
       <div class="form-group">
         <label id="daterange-label" class="control-label" for="daterange"><h4>Date range:</h4></label>
@@ -44,5 +44,7 @@ export default {
 </script>
 
 <style scoped>
-
+#range-selector.card {
+  padding: 10px;
+}
 </style>
