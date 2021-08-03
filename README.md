@@ -91,8 +91,8 @@ To do this in Chrome go to dev tools `Settings > Preferences > Sources` and disa
 
 
 ### Deploying application to production deployment
-This is a work in progress. We are using nginx and docker to deploy our application.
-Please see [this issue](https://github.com/LukeParky/gri-earthquake/issues/9) for progress details.
+This is a work in progress. We are using nginx and docker to deploy our application. Please
+see [this issue](https://github.com/GeospatialResearch/gri-earthquake/issues/9) for progress details.
 
 ### Repository structure
 ```tree
@@ -103,13 +103,14 @@ gri-earthquake
 See also: [client README](client/README.md) and [server README](server/README.md)
 
 ## Contributions
-Please see our [Issue Tracker](https://github.com/LukeParky/gri-earthquake/issues)   for details on coming features and additions to the software.
 
-There is no current expectations of contributions to this project. We accept input in code reviews now. 
-If you would like to be involved in the project, please contact the maintainer.  
-The Geospatial Web Framework that is
-being created alongside this project will be opened to the public in the coming months. We will
-accept contributions to that project in the future.
+Please see our [Issue Tracker](https://github.com/GeospatialResearch/gri-earthquake/issues)   for details on coming
+features and additions to the software.
+
+There is no current expectations of contributions to this project. We accept input in code reviews now. If you would
+like to be involved in the project, please contact the maintainer.  
+The Geospatial Web Framework that is being created alongside this project will be opened to the public in the coming
+months. We will accept contributions to that project in the future.
 
 
 ## Contacts
