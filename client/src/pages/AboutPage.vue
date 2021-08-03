@@ -19,7 +19,8 @@
     </ul>
     <hr />
     <h4>Source code</h4>
-    <p>The source code for the app <a href="https://github.com/LukeParky/gri-earthquake">can be obtained from GitLab
+    <p>The source code for the app <a href="https://github.com/GeospatialResearch/gri-earthquake">can be obtained from
+      GitLab
       here</a>.</p>
     <hr />
     <h4>Version history</h4>
