@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <b-container fluid>
     <h3>NZ Earthquake viewer</h3>
     <p>This is a Vue.js/Flask app which demonstrates web queries to map and plot New Zealand earthquakes which were
       recorded by <a href="https://api.geonet.org.nz">GeoNet</a>.</p>
@@ -42,7 +42,7 @@
       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
       IN THE SOFTWARE.</p>
 
-  </div>
+  </b-container>
 </template>
 
 <script>
