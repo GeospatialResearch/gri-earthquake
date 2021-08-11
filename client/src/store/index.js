@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import * as types from "./mutation-types";
+import mapModule from "@/pages/MapPage/store"
 import {getEarthquakes} from "@/requests";
 
 Vue.use(Vuex)
@@ -11,6 +12,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // Enable Vuex strict mode to aid debugging in development
   strict: process.env.NODE_ENV === "development",
+
+  modules: {
+    map: mapModule,
+  },
 
   state: {
     titlePrefix: 'NZ Earthquake Viewer',

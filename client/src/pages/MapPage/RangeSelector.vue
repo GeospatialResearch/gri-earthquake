@@ -22,12 +22,9 @@
       </b-form-group>
 
       <b-form-group v-slot="{ ariaDescribedBy }" label="Variable:" label-size="lg">
-        <b-form-radio-group
-            :aria-describedby="ariaDescribedBy"
-            @change="$emit('selected-variable-change', selectedVariable)"
-        >
-          <b-form-radio v-model="selectedVariable" value="magnitude">Magnitude</b-form-radio>
-          <b-form-radio v-model="selectedVariable" value="depth">Depth</b-form-radio>
+        <b-form-radio-group v-model="selectedVariable" :aria-describedby="ariaDescribedBy">
+          <b-form-radio value="magnitude">Magnitude</b-form-radio>
+          <b-form-radio value="depth">Depth</b-form-radio>
         </b-form-radio-group>
       </b-form-group>
     </div>
@@ -36,35 +33,25 @@
 
 <script>
 import {mapState} from "vuex";
+import {mutationTypes, storeNamespace} from "./store";
 
 export default {
   name: "RangeSelector",
-  props: {
-    initialSelectedVariable: {
-      type: String,
-      validator(value) {
-        return ['magnitude', 'depth'].includes(value);
-      },
-      default() {
-        return "magnitude"
-      }
-    }
-  },
-  data() {
-    return {
-      selectedVariable: null,
-    }
-  },
   computed: {
     // Map store access: this.$store.state.X -> this.X
     ...mapState([
       'minMagnitude',
       'maxMagnitude'
     ]),
+    selectedVariable: {
+      get() {
+        return this.$store.state.map.selectedVariable;
+      },
+      set(newVariable) {
+        this.$store.commit(`${storeNamespace}/${mutationTypes.SET_SELECTED_VARIABLE}`, newVariable)
+      }
+    }
   },
-  mounted() {
-    this.selectedVariable = this.initialSelectedVariable;
-  }
 }
 </script>
 

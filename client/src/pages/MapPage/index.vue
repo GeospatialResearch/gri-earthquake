@@ -7,11 +7,7 @@
         lat="-43.523392915353384"
         lng="172.58414599255107"
     />
-    <RangeSelector
-        id="range-selector"
-        :initial-selected-variable="selectedVariable"
-        @selected-variable-change="onSelectedVariableChange"
-    />
+    <RangeSelector id="range-selector" />
   </div>
 </template>
 
@@ -19,6 +15,7 @@
 import {mapState} from 'vuex'
 import RangeSelector from "./RangeSelector";
 import MapViewer from "./MapViewer";
+import {storeNamespace} from "@/pages/MapPage/store";
 
 export default {
   name: "MapPage",
@@ -27,8 +24,7 @@ export default {
   components: {MapViewer, RangeSelector},
   data: function () {
     return {
-      hereApiToken: process.env.VUE_APP_HEREAPI,
-      selectedVariable: "depth"
+      hereApiToken: process.env.VUE_APP_HEREAPI
     }
   },
 
@@ -36,15 +32,13 @@ export default {
     // Map store access: this.$store.state.X -> this.X
     ...mapState([
       'startDate',
-      'endDate'
+      'endDate',
+    ]),
+    ...mapState(storeNamespace, [
+      'selectedVariable'
     ])
   },
 
-  methods: {
-    onSelectedVariableChange(newValue) {
-      console.log(newValue)
-    }
-  }
 }
 </script>
 
