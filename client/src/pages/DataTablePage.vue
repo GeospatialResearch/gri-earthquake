@@ -60,7 +60,7 @@ export default {
   name: "DataTablePage",
   title: "Data Table",
 
-  data: function () {
+  data() {
     return {
       currentPage: 1,
       totalRows: 0,
@@ -84,8 +84,6 @@ export default {
     ...mapState([
       'loadingStatus',
       'earthquakes',
-      'startDate',
-      'endDate'
     ]),
   },
 

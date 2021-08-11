@@ -7,7 +7,11 @@
         lat="-43.523392915353384"
         lng="172.58414599255107"
     />
-    <RangeSelector id="range-selector" class="bg-white" />
+    <RangeSelector
+        id="range-selector"
+        :initial-selected-variable="selectedVariable"
+        @selected-variable-change="onSelectedVariableChange"
+    />
   </div>
 </template>
 
@@ -23,7 +27,8 @@ export default {
   components: {MapViewer, RangeSelector},
   data: function () {
     return {
-      hereApiToken: process.env.VUE_APP_HEREAPI
+      hereApiToken: process.env.VUE_APP_HEREAPI,
+      selectedVariable: "depth"
     }
   },
 
@@ -35,7 +40,11 @@ export default {
     ])
   },
 
-  methods: {}
+  methods: {
+    onSelectedVariableChange(newValue) {
+      console.log(newValue)
+    }
+  }
 }
 </script>
 

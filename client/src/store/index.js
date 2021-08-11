@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import * as types from "./types";
+import * as types from "./mutation-types";
 import {getEarthquakes} from "@/requests";
 
 Vue.use(Vuex)
@@ -9,12 +9,25 @@ Vue.use(Vuex)
  * VueX store for the project. Holds all application wide data
  */
 export default new Vuex.Store({
+  // Enable Vuex strict mode to aid debugging in development
+  strict: process.env.NODE_ENV === "development",
+
   state: {
     titlePrefix: 'NZ Earthquake Viewer',
     loadingStatus: false, // Set to true if data is currently being retrieved
     startDate: '2021-05-01',
     endDate: '2021-05-02',
-    earthquakes: [] // Earthquake data between `startDate` and `endDate`
+    earthquakes: [], // Earthquake data between `startDate` and `endDate`
+    minMagnitude: 0,
+    maxMagnitude: 9,
+  },
+
+  getters: {
+    filteredEarthquakes: state => {
+      state.earthquakes.filter(earthquake =>
+          state.minMagnitude < earthquake.magnitude && earthquake.magnitude <= state.maxMagnitude
+      )
+    },
   },
 
   mutations: {
