@@ -16,6 +16,7 @@ export async function getEarthquakes(startDate, endDate) {
     const response = await axios.get(`${API_URL}/earthquakes`, {params: {startdate: startDate, enddate: endDate}});
     return response.data.earthquakes
   } catch (e) {
-    console.error(e)
+    console.error("Could not access earthquakes API");
+    throw(e);
   }
 }
