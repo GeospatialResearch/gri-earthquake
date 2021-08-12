@@ -6,7 +6,7 @@
           <label class="sr-only" for="date-range-from">Date range start</label>
           <b-form-input id="date-range-from" type="date" />
           <b-input-group-addon>
-            <b-input-group-text> to</b-input-group-text>
+            <b-input-group-text>to</b-input-group-text>
           </b-input-group-addon>
           <label class="sr-only" for="date-range-to">Date range end</label>
           <b-form-input id="date-range-to" type="date" />
