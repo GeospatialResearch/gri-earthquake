@@ -9,7 +9,7 @@
     <p>All data presented are copyright of the respective owners and they are gratefully acknowledged:</p>
     <ul>
       <li>Earthquake data: <a href="https://api.geonet.org.nz">GeoNet</a>. Data license: <a
-          href="http://creativecommons.org/licenses/by/3.0/nz">Creative Commons Attribution 3.0 New Zealand</a>.
+          href="https://creativecommons.org/licenses/by/3.0/nz">Creative Commons Attribution 3.0 New Zealand</a>.
         Copyright <a href="https://www.gns.cri.nz">GNS Science</a>.
       </li>
       <li>Active fault data: <a href="https://data.gns.cri.nz/af">GNS Science</a>, as detailed in <a

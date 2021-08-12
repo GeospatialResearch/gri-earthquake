@@ -10,6 +10,10 @@ const today = new Date();
 const thirtyDaysAgo = new Date();
 thirtyDaysAgo.setDate(today.getDate() - 30);
 
+/** Converts Date object to string in yyyy-mm-dd format
+ * @param date Date object to be formatted
+ * @return string representation of the date in yyyy-mm-dd
+ */
 function dateFormatted(date) {
   return date.toISOString().split('T')[0];
 }

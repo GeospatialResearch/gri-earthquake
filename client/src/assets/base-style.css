@@ -37,7 +37,7 @@ h1, h2, h3, h4 {
 #controls:hover {
     /* Fade in while hovering */
     opacity: 0.95;
-    transition-delay: 0;
+    transition-delay: 0s;
 }
 
 /* Position and style citation */
