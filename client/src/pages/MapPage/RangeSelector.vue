@@ -1,40 +1,34 @@
 <template>
-  <div id="range-selector" class="card">
+  <b-card id="range-selector">
     <div>
-      <div class="form-group">
-        <label id="daterange-label" class="control-label" for="daterange"><h4>Date range:</h4></label>
-        <div class="input-group input-group-sm">
-          <input aria-labelledby="daterange-label" class="form-control" type="text">
-          <span class="input-group-addon"><span class="input-group-text"> to </span></span>
-          <input aria-labelledby="daterange-label" class="form-control" type="text">
-        </div>
-      </div>
-      <div class="form-group">
-        <label id="quickselect-label" class="control-label" for="quickselect-selectized">Quick select</label>
-      </div>
-      <button class="btn btn-default action-button">Load</button>
-      <hr />
-      <div class="form-group">
-        <label id="magnitudeSlider-label" class="control-label"><h4>Magnitude range:</h4></label>
-      </div>
-      <div id="var" aria-labelledby="var-label" class="form-group" role="radiogroup">
-        <label class="control-label"><h4>Variable:</h4></label>
-        <div>
-          <label class="radio-inline">
-            <input checked name="var" type="radio" value="magnitude">
-            <span>Magnitude</span>
-          </label>
-          <label class="radio-inline">
-            <input name="var" type="radio" value="depth">
-            <span>Depth</span>
-          </label>
-        </div>
-      </div>
-    </div>
-    <div>
+      <b-form-group label="Date range:" label-size="lg">
+        <b-input-group>
+          <label class="sr-only" for="date-range-from">Date range start</label>
+          <b-form-input id="date-range-from" type="date" />
+          <b-input-group-addon>
+            <b-input-group-text>to</b-input-group-text>
+          </b-input-group-addon>
+          <label class="sr-only" for="date-range-to">Date range end</label>
+          <b-form-input id="date-range-to" type="date" />
+        </b-input-group>
+      </b-form-group>
 
+      <b-form-group label="Quick select: ">
+      </b-form-group>
+
+      <b-button>Load</b-button>
+      <hr />
+      <b-form-group label="Magnitude range:" label-size="lg">
+      </b-form-group>
+
+      <b-form-group v-slot="{ ariaDescribedBy }" label="Variable:" label-size="lg">
+        <b-form-radio-group :aria-describedby="ariaDescribedBy">
+          <b-form-radio value="magnitude">Magnitude</b-form-radio>
+          <b-form-radio value="depth">Depth</b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
     </div>
-  </div>
+  </b-card>
 </template>
 
 <script>
@@ -44,7 +38,5 @@ export default {
 </script>
 
 <style scoped>
-#range-selector.card {
-  padding: 10px;
-}
+
 </style>
