@@ -6,6 +6,14 @@ import {getEarthquakes} from "@/requests";
 
 Vue.use(Vuex)
 
+const today = new Date();
+const thirtyDaysAgo = new Date();
+thirtyDaysAgo.setDate(today.getDate() - 30);
+
+function dateFormatted(date) {
+  return date.toISOString().split('T')[0];
+}
+
 /**
  * VueX store for the project. Holds all application wide data
  */
@@ -20,8 +28,8 @@ export default new Vuex.Store({
   state: {
     titlePrefix: 'NZ Earthquake Viewer',
     loadingStatus: false, // Set to true if data is currently being retrieved
-    startDate: '2021-05-01',
-    endDate: '2021-05-02',
+    startDate: dateFormatted(today),
+    endDate: dateFormatted(thirtyDaysAgo),
     earthquakes: [], // Earthquake data between `startDate` and `endDate`
     minMagnitude: 0,
     maxMagnitude: 9,
@@ -37,10 +45,20 @@ export default new Vuex.Store({
 
   mutations: {
     [types.SET_EARTHQUAKES](state, earthquakes) {
-      state.earthquakes = earthquakes
+      state.earthquakes = earthquakes;
     },
     [types.SET_LOADING_STATUS](state, loadingStatus) {
-      state.loadingStatus = loadingStatus
+      state.loadingStatus = loadingStatus;
+    },
+    [types.SET_START_DATE](state, startDate) {
+      state.startDate = startDate;
+    },
+    [types.SET_END_DATE](state, endDate) {
+      state.endDate = endDate;
+    },
+    [types.RESET_DATES](state) {
+      state.startDate = dateFormatted(today);
+      state.endDate = dateFormatted(thirtyDaysAgo);
     },
   },
 

@@ -4,12 +4,20 @@
       <b-form-group label="Date range:" label-size="lg">
         <b-input-group>
           <label class="sr-only" for="date-range-from">Date range start</label>
-          <b-form-input id="date-range-from" type="date" />
+          <b-form-input
+              id="date-range-from"
+              v-model="startDate"
+              type="date"
+          />
           <b-input-group-addon>
             <b-input-group-text>to</b-input-group-text>
           </b-input-group-addon>
           <label class="sr-only" for="date-range-to">Date range end</label>
-          <b-form-input id="date-range-to" type="date" />
+          <b-form-input
+              id="date-range-to"
+              v-model="endDate"
+              type="date"
+          />
         </b-input-group>
       </b-form-group>
 
@@ -33,7 +41,8 @@
 
 <script>
 import {mapState} from "vuex";
-import {mutationTypes, storeNamespace} from "./store";
+import {mapMutationTypes, storeNamespace} from "./store";
+import {SET_END_DATE, SET_START_DATE} from "@/store/mutation-types";
 
 export default {
   name: "RangeSelector",
@@ -43,12 +52,28 @@ export default {
       'minMagnitude',
       'maxMagnitude'
     ]),
+    startDate: {
+      get() {
+        return this.$store.state.startDate;
+      },
+      set(newStartDate) {
+        this.$store.commit(SET_START_DATE, newStartDate);
+      }
+    },
+    endDate: {
+      get() {
+        return this.$store.state.endDate;
+      },
+      set(newEndDate) {
+        this.$store.commit(SET_END_DATE, newEndDate);
+      }
+    },
     selectedVariable: {
       get() {
         return this.$store.state.map.selectedVariable;
       },
       set(newVariable) {
-        this.$store.commit(`${storeNamespace}/${mutationTypes.SET_SELECTED_VARIABLE}`, newVariable)
+        this.$store.commit(`${storeNamespace}/${mapMutationTypes.SET_SELECTED_VARIABLE}`, newVariable)
       }
     }
   },

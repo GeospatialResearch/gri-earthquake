@@ -1,6 +1,6 @@
 export const storeNamespace = "map"
 
-export const mutationTypes = {
+export const mapMutationTypes = {
   SET_SELECTED_VARIABLE: "SET_SELECTED_VARIABLE"
 }
 
@@ -12,7 +12,7 @@ export default {
   }),
 
   mutations: {
-    [mutationTypes.SET_SELECTED_VARIABLE](state, selectedVariable) {
+    [mapMutationTypes.SET_SELECTED_VARIABLE](state, selectedVariable) {
       state.selectedVariable = selectedVariable;
     }
   }

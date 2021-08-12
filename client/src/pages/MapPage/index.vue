@@ -12,10 +12,9 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
 import RangeSelector from "./RangeSelector";
 import MapViewer from "./MapViewer";
-import {storeNamespace} from "@/pages/MapPage/store";
+import {RESET_DATES} from "@/store/mutation-types";
 
 export default {
   name: "MapPage",
@@ -28,17 +27,10 @@ export default {
     }
   },
 
-  computed: {
-    // Map store access: this.$store.state.X -> this.X
-    ...mapState([
-      'startDate',
-      'endDate',
-    ]),
-    ...mapState(storeNamespace, [
-      'selectedVariable'
-    ])
+  created() {
+    // Reset the dates whenever the user returns to the page
+    this.$store.commit(RESET_DATES);
   },
-
 }
 </script>
 
