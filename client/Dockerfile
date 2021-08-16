@@ -5,6 +5,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY ./ .
+ARG HERE_API
+RUN echo "VUE_APP_HEREAPI=$HERE_API" >> .env.local
 RUN npm run build:harp-gl-decoder
 RUN npm run build
 
