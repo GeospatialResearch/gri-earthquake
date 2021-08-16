@@ -2,8 +2,7 @@ import axios from "axios";
 
 // Requests to be sent to external APIs to get data
 
-const API_PORT_NUMBER = 5000;
-const API_URL = `http://localhost:${API_PORT_NUMBER}`;
+const API_URL = process.env.VUE_APP_EARTHQUAKE_API
 
 /**
  * Retrieves all earthquakes between startDate and endDate from external API
