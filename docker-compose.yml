@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+    api:
+        build: ./server
+        ports:
+            - "5000:5000"
+    www:
+        build:
+            context: ./client
+            args:
+                HERE_API: ${HERE_MAPS_TOKEN}
+        ports:
+            - "80:80"
