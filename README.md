@@ -6,7 +6,7 @@ Geospatial Research Institute Toi Hanagarau. This application is used to visuali
 ![image](https://user-images.githubusercontent.com/41398636/126084844-1bad1906-8784-4f9b-93ec-df0e5e995dd6.png)
 
 
-## Setup
+## Setup for local development
 
 This project consists of two parts, a client web app in `client/`, and a web server REST API in `server/`.
 
@@ -85,21 +85,55 @@ This project consists of two parts, a client web app in `client/`, and a web ser
 
 5. Opening app:  
 Open the client web address in your browser. The address will be listed in the terminal used for starting the client.
-      
-If you wish to remove excessive warnings about source maps from the dev console in your browser, then disable JavaScript source maps.  
+
+If you wish to remove excessive warnings about source maps from the dev console in your browser, then disable JavaScript
+source maps.  
 To do this in Chrome go to dev tools `Settings > Preferences > Sources` and disable `Enable JavaScript source maps`.
 
 
 ### Deploying application to production deployment
-This is a work in progress. We are using nginx and docker to deploy our application. Please
-see [this issue](https://github.com/GeospatialResearch/gri-earthquake/issues/9) for progress details.
+
+We use `docker-compose` to deploy to the server, so see [docker-compose docs](https://docs.docker.com/compose/install/)
+for installation instructions.
+
+With `docker-compose` installed, a `docker` daemon service running on your server, and ports 5000 and 80 open, follow
+these instructions:
+
+1. Find your Here API token by following the instructions for creating an access token above.
+2. Add the Here API token to your shell environment variables.
+
+```bash
+    echo "export HERE_MAPS_TOKEN=enter_your_access_token_here" >> ~/.bashrc
+    source ~/.bashrc
+```
+
+3. Enter the folder you wish to store the source and clone the repository.
+
+```bash
+    git clone https://github.com/GeospatialResearch/gri-earthquake.git
+```
+
+4. Build the application.
+
+```bash
+    cd gri-earthquake
+    docker-compose build
+```
+
+5. Deploy the application.
+
+```bash
+    docker-compose up
+```
 
 ### Repository structure
+
 ```tree
 gri-earthquake
 └───client # files used in the client-side application, run in the user's browser  
 └───server # files used in the server-side application, used to store data and perform intensive tasks
 ```
+
 See also: [client README](client/README.md) and [server README](server/README.md)
 
 ## Contributions
