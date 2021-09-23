@@ -32,8 +32,8 @@ export default new Vuex.Store({
   state: {
     titlePrefix: 'NZ Earthquake Viewer',
     loadingStatus: false, // Set to true if data is currently being retrieved
-    startDate: dateFormatted(today),
-    endDate: dateFormatted(thirtyDaysAgo),
+    startDate: dateFormatted(thirtyDaysAgo),
+    endDate: dateFormatted(today),
     earthquakes: [], // Earthquake data between `startDate` and `endDate`
     minMagnitude: 0,
     maxMagnitude: 9,
@@ -61,8 +61,8 @@ export default new Vuex.Store({
       state.endDate = endDate;
     },
     [types.RESET_DATES](state) {
-      state.startDate = dateFormatted(today);
-      state.endDate = dateFormatted(thirtyDaysAgo);
+      state.startDate = dateFormatted(thirtyDaysAgo);
+      state.endDate = dateFormatted(today);
     },
   },
 
