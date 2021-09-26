@@ -24,7 +24,7 @@
       <b-form-group label="Quick select: ">
       </b-form-group>
 
-      <b-button>Load</b-button>
+      <b-button @click="reloadEarthquakes">Load</b-button>
       <hr />
       <b-form-group label="Magnitude range:" label-size="lg">
       </b-form-group>
@@ -76,6 +76,11 @@ export default {
         this.$store.commit(`${storeNamespace}/${mapMutationTypes.SET_SELECTED_VARIABLE}`, newVariable)
       }
     }
+  },
+  methods: {
+    reloadEarthquakes() {
+      this.$store.dispatch('updateEarthquakes');
+    },
   },
 }
 </script>

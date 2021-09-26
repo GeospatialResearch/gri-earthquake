@@ -27,6 +27,9 @@ export default {
 
   data() {
     return {
+      /** Data source for all earthquake points on the map */
+      earthquakeDataSource: null,
+
       /** Styles for map */
       customisedTheme: {
         extends: "https://unpkg.com/@here/harp-map-theme@latest/resources/berlin_tilezen_effects_streets.json",
@@ -115,6 +118,9 @@ export default {
 
     addEarthquakePoints() {
       if (!this.loadingStatus) {
+        if (this.earthquakeDataSource) {
+          this.map.removeDataSource(this.earthquakeDataSource);
+        }
         this.dropPoints('earthquakes', this.earthquakes);
       }
     },
@@ -127,12 +133,12 @@ export default {
     /** Add markers to maps at each position */
     dropPoints(name, positions) {
       const geoJsonDataProvider = new GeoJsonDataProvider(name, this.createPoints(positions));
-      const geoJsonDataSource = new OmvDataSource({
+      this.earthquakeDataSource = new OmvDataSource({
         dataProvider: geoJsonDataProvider,
         name: name,
         styleSetName: "markerStyleSet"
       });
-      this.map.addDataSource(geoJsonDataSource);
+      this.map.addDataSource(this.earthquakeDataSource);
     }
   }
 }
