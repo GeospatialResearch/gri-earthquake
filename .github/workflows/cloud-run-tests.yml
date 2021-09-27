@@ -6,13 +6,13 @@ name: Run tests
 on: push
 
 jobs:
-  checkout:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: log
-        run: |
-          echo $(ls) && ls && ls server
+#  checkout:
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - uses: actions/checkout@v2
+  #      - name: log
+  #        run: |
+  #          echo $(ls) && ls && ls server
 
   #  lint:
   #    needs: checkout
@@ -24,10 +24,10 @@ jobs:
   #          echo "lin"
 
   build:
-    needs: checkout
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - name: testing
         run: |
-          echo $(ls) && ls $GITHUB_WORKSPACE
+          echo $(ls) && ls $GITHUB_WORKSPACE && ls && ls server
