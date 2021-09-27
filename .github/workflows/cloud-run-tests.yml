@@ -27,4 +27,4 @@ jobs:
     steps:
       - name: testing
         run: |
-          ls
+          echo $(ls)
