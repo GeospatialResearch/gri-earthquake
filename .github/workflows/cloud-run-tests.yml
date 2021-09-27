@@ -6,9 +6,16 @@ name: Run tests
 on: push
 
 jobs:
+  lint-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run lint with flake8
+        run: |
+          flake8 server/src --show-source --count --statistics --max-line-length=120
+
   build:
     runs-on: ubuntu-latest
-
     env:
       HERE_MAPS_TOKEN: ${{ secrets.HERE_MAPS_TOKEN }}
     steps:
