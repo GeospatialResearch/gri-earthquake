@@ -6,28 +6,13 @@ name: Run tests
 on: push
 
 jobs:
-#  checkout:
-  #    runs-on: ubuntu-latest
-  #    steps:
-  #      - uses: actions/checkout@v2
-  #      - name: log
-  #        run: |
-  #          echo $(ls) && ls && ls server
-
-  #  lint:
-  #    needs: checkout
-  #    runs-on: ubuntu-latest
-  #
-  #    steps:
-  #      - name: testing lin
-  #        run: |
-  #          echo "lin"
-
   build:
     runs-on: ubuntu-latest
 
+    env:
+      HERE_MAPS_TOKEN: ${{ secrets.HERE_MAPS_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - name: testing
+      - name: docker-compose build
         run: |
-          echo $(ls) && ls $GITHUB_WORKSPACE && ls && ls server
+          docker-compose build
