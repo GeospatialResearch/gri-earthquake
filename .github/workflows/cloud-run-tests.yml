@@ -10,7 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: run lint with flake8
+      - name: Install flake8
+        run: |
+          python -m pip install flake8
+      - name: Run lint with flake8
         run: |
           flake8 server/src --show-source --count --statistics --max-line-length=120
 
