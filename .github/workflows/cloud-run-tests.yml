@@ -21,9 +21,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
+      - name: Run npm ci
+        run: |
           cd client
           npm ci
+      - name: Run lint
+        run: |
+          cd client
           npm run lint
 
 
