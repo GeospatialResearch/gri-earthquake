@@ -11,18 +11,10 @@ app = Flask(__name__)
 # Set up Cross-Origin policy
 CORS(app, origins=["http://localhost:8080", "http://gri1p.linux.canterbury.ac.nz"])
 
-# Production server
-if __name__ != '__main__':
-    # Set gunicorn loggers to work with flask
-    gunicorn_logger = logging.getLogger('gunicorn.error')
-    app.logger.handlers = gunicorn_logger.handlers
-    app.logger.setLevel(gunicorn_logger.level)
-
 
 @app.route('/earthquakes')
 def earthquakes():
     """Requests earthquake data and flattens to a simplified JSON format"""
-    app.logger.info(request.headers['Origin'])
     eq_data = make_earthquake_request(request.args)
     filtered_data = filtered_earthquake_data(eq_data)
     return filtered_data
