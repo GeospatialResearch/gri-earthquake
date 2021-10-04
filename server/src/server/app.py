@@ -22,7 +22,6 @@ if __name__ != '__main__':
 @app.route('/earthquakes')
 def earthquakes():
     """Requests earthquake data and flattens to a simplified JSON format"""
-    app.logger.info(request.headers['Origin'])
     eq_data = make_earthquake_request(request.args)
     filtered_data = filtered_earthquake_data(eq_data)
     return filtered_data
