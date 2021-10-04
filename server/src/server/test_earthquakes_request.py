@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime, timedelta
 
-from server.app import make_earthquake_request
+from server.earthquakes import make_earthquake_request
 
 
 class TestEarthquakesRequest(unittest.TestCase):
@@ -18,7 +18,7 @@ class TestEarthquakesRequest(unittest.TestCase):
         self.assertEqual(len(response["features"]), 0, "Expected features list to be empty")
 
     def test_empty_end_date(self):
-        """Tests all earthquakes for the last 31 days"""
+        """Tests all earthquakes.py for the last 31 days"""
         today = datetime.now()
         last_month = today - timedelta(days=31)  # 31 days ago
         start_time = str(last_month)
