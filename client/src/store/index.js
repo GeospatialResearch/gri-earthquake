@@ -30,10 +30,16 @@ export default new Vuex.Store({
     // Retrieve earthquake data from external API and update in store
     updateEarthquakes({commit, state}) {
       commit(types.SET_LOADING_STATUS, true);
-      getEarthquakes(state.startDate, state.endDate).then(earthquakes => {
-        commit(types.SET_EARTHQUAKES, earthquakes)
-        commit(types.SET_LOADING_STATUS, false)
-      })
-    }
+      getEarthquakes(state.startDate, state.endDate)
+          .then(earthquakes => {
+            commit(types.SET_EARTHQUAKES, earthquakes);
+          })
+          .catch(error => {
+            console.error(error.response);
+          })
+          .finally(() => {
+            commit(types.SET_LOADING_STATUS, false);
+          });
+    },
   }
 });
