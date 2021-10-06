@@ -1,6 +1,7 @@
 import logging
+from http.client import BAD_REQUEST
 
-from flask import Flask
+from flask import Flask, Response
 from flask import request
 from flask_cors import CORS
 
@@ -22,6 +23,12 @@ if __name__ != '__main__':
 @app.route('/earthquakes')
 def earthquakes():
     """Requests earthquake data and flattens to a simplified JSON format"""
+    start = request.args.get("startdate")
+    end = request.args.get("enddate")
+    if not start:
+        return Response("No start date supplied", BAD_REQUEST)
+    if end and start >= end:
+        return Response("Start date must be before end date", BAD_REQUEST)
     eq_data = make_earthquake_request(request.args)
     filtered_data = filtered_earthquake_data(eq_data)
     return filtered_data
