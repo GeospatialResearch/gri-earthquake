@@ -5,7 +5,7 @@ from flask import Flask, Response
 from flask import request
 from flask_cors import CORS
 
-from server.earthquakes import make_earthquake_request, filtered_earthquake_data
+from .earthquakes import make_earthquake_request, filtered_earthquake_data
 
 app = Flask(__name__)
 

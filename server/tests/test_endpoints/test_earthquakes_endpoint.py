@@ -2,8 +2,7 @@ from datetime import datetime, timedelta
 from typing import Optional
 
 import pytest
-
-from server.app import app
+from src.server.app import app
 
 
 @pytest.fixture
@@ -48,7 +47,7 @@ def test_start_date_same_as_end_date(client):
     assert resp.status_code == 400
 
 
-def start_date_after_end_date(client):
+def test_start_date_after_end_date(client):
     resp = get_earthquakes(client, start_date="2021-10-05", end_date="2021-10-01")
     assert b'Start date must be before end date' in resp.data
     assert resp.status_code == 400
