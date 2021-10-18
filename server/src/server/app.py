@@ -1,15 +1,23 @@
 import logging
+import os
 from itertools import count
 
+import geopandas
+import pandas as pd
 import requests
+from dotenv import load_dotenv
 from flask import Flask
 from flask import request
 from flask_cors import CORS
+from geoapis.vector import Linz
 
 app = Flask(__name__)
 
 # Set up Cross-Origin policy
 CORS(app, origins=["http://localhost:8080", "http://gri1p.linux.canterbury.ac.nz"])
+
+# Load environment variables
+load_dotenv()
 
 # Production server
 if __name__ != '__main__':
@@ -26,6 +34,20 @@ def earthquakes():
     eq_data = make_earthquake_request(request.args)
     filtered_data = filtered_earthquake_data(eq_data)
     return filtered_data
+
+
+@app.route('/buildings')
+def buildings_layer():
+    """Requests building layer data"""
+    kaiapoi_d = {
+        "wkt": ["POLYGON ((1570792 5196184, 1570730 5195134, 1572337 5195117, 1572264 5196045, 1570792 5196184))"]}
+    df = pd.DataFrame(kaiapoi_d)
+    gs = geopandas.GeoSeries.from_wkt(df['wkt'])
+    kaiapoi_gdf = geopandas.GeoDataFrame(df, geometry=gs, crs="epsg:2193")
+    linz = Linz(key=os.getenv("LINZ_KEY"), bounding_polygon=kaiapoi_gdf, verbose=True)
+    building_gdf = linz.run(101290).to_crs(4284)
+    building_gdf.to_file("buildings.geojson", driver='GeoJSON')
+    return "Success"
 
 
 def make_earthquake_request(payload):

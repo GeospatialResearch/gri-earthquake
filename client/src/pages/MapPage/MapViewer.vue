@@ -9,7 +9,7 @@
 import GeoJSON from "geojson";
 import {MapView} from "@here/harp-mapview";
 import {MapControls, MapControlsUI} from "@here/harp-map-controls"
-import {APIFormat, GeoJsonDataProvider} from "@here/harp-vectortile-datasource";
+import {APIFormat, GeoJsonDataProvider, VectorTileDataSource} from "@here/harp-vectortile-datasource";
 import {OmvDataSource} from "@here/harp-omv-datasource";
 import {GeoCoordinates} from "@here/harp-geoutils";
 import {mapState} from "vuex";
@@ -29,10 +29,11 @@ export default {
     return {
       /** Data source for all earthquake points on the map */
       earthquakeDataSource: null,
+      buildingDataSource: null,
 
       /** Styles for map */
       customisedTheme: {
-        extends: "https://unpkg.com/@here/harp-map-theme@latest/resources/berlin_tilezen_effects_streets.json",
+        extends: "theme/berlin_tilezen_night_reduced.json",
 
         styles: {
           markerStyleSet: [{
@@ -44,8 +45,19 @@ export default {
               size: 15
             }
           },
-          ]},
-      },
+          ],
+          geojson: [{
+            "when": [
+              "==", ["geometry-type"], "Polygon"
+            ],
+            "technique": "extruded-polygon",
+            "opacity": 1,
+            "height": 3,
+            renderOrder: 1000,
+            "color": "#cc720c",
+          }]
+        },
+      }
 
     }
   },
@@ -111,24 +123,41 @@ export default {
           authenticationCode: this.token,
         });
         this.map.addDataSource(omvDataSource);
+        this.getBuildingOutlines()
       } else {
         console.error(`Invalid HERE XYZ token: ${this.token}. Make sure you have a VUE_APP_HEREAPI environment variable set. Check the README for more info`);
       }
     },
 
     addEarthquakePoints() {
-      if (!this.loadingStatus) {
-        if (this.earthquakeDataSource) {
-          this.map.removeDataSource(this.earthquakeDataSource);
-        }
-        this.dropPoints('earthquakes', this.earthquakes);
-      }
+      // if (!this.loadingStatus) {
+      //   if (this.earthquakeDataSource) {
+      //     this.map.removeDataSource(this.earthquakeDataSource);
+      //   }
+      //   this.dropPoints('earthquakes', this.earthquakes);
+      // }
     },
+
 
     /** Convert array of positions into GeoJSON Points */
     createPoints(positions) {
       return GeoJSON.parse(positions, {Point: ["longitude", "latitude"]});
     },
+
+    async getBuildingOutlines() {
+      const res = await fetch("buildings.geojson");
+      const data = await res.json();
+      const dataProvider = new GeoJsonDataProvider("building-outlines", data);
+      const buildingDataSource = new VectorTileDataSource({
+        dataProvider,
+        name: "building-outlines",
+        styleSetName: "geojson",
+      });
+      buildingDataSource
+      this.map.addDataSource(buildingDataSource);
+      console.log("yeet")
+    },
+
 
     /** Add markers to maps at each position */
     dropPoints(name, positions) {
