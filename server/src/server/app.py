@@ -1,10 +1,11 @@
 import logging
-from itertools import count
+from http.client import BAD_REQUEST
 
-import requests
-from flask import Flask
+from flask import Flask, Response
 from flask import request
 from flask_cors import CORS
+
+from .earthquakes import make_earthquake_request, filtered_earthquake_data
 
 app = Flask(__name__)
 
@@ -22,38 +23,15 @@ if __name__ != '__main__':
 @app.route('/earthquakes')
 def earthquakes():
     """Requests earthquake data and flattens to a simplified JSON format"""
-    app.logger.info(request.headers['Origin'])
+    start = request.args.get("startdate")
+    end = request.args.get("enddate")
+    if not start:
+        return Response("No start date supplied", BAD_REQUEST)
+    if end and start >= end:
+        return Response("Start date must be before end date", BAD_REQUEST)
     eq_data = make_earthquake_request(request.args)
     filtered_data = filtered_earthquake_data(eq_data)
     return filtered_data
-
-
-def make_earthquake_request(payload):
-    """Requests GeoJSON data from Geonet for all earthquakes in the specified ranges provided by payload"""
-    payload_with_bbox = dict([("bbox", "164,-49,180,-32")], **payload)  # Provides default value for bbox
-    return requests.get("https://quakesearch.geonet.org.nz/geojson", params=payload_with_bbox).json()
-
-
-def filtered_earthquake_data(eq_data):
-    """Flattens and simplifies earthquake GeoJSON to a very simplified format"""
-
-    def json_filter(feature):
-        props = feature['properties']
-        geom = feature['geometry']
-        return {
-            'index': next(counter),
-            'publicid': props['publicid'],
-            'origintime': props['origintime'],
-            'latitude': geom['coordinates'][0],
-            'longitude': geom['coordinates'][1],
-            'magnitude': props['magnitude'],
-            'depth': props['depth']
-        }
-
-    counter = count(start=1)
-    features = eq_data['features']
-    filtered_features = list(map(json_filter, features))
-    return {'earthquakes': filtered_features}
 
 
 # Development server

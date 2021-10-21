@@ -11,10 +11,8 @@ const API_URL = process.env.VUE_APP_EARTHQUAKE_API
  * @returns {Promise<[Earthquake]>} Array containing all earthquakes in the specified range
  */
 export async function getEarthquakes(startDate, endDate) {
-  try {
-    const response = await axios.get(`${API_URL}/earthquakes`, {params: {startdate: startDate, enddate: endDate}});
-    return response.data.earthquakes
-  } catch (e) {
-    console.error(e)
-  }
+  const response = await axios.get(`${API_URL}/earthquakes`, {
+    params: {startdate: startDate, enddate: endDate}
+  });
+  return response.data.earthquakes
 }
