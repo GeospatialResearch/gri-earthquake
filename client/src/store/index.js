@@ -35,6 +35,7 @@ export default new Vuex.Store({
             commit(types.SET_EARTHQUAKES, earthquakes);
           })
           .catch(error => {
+            // todo add error banner and test for it
             console.error(error.response);
           })
           .finally(() => {

@@ -98,6 +98,7 @@ export default {
         });
         this.map.addDataSource(omvDataSource);
       } else {
+        // todo: add error banner and test for it
         console.error(`Invalid HERE XYZ token: ${this.token}. Make sure you have a VUE_APP_HEREAPI environment variable set. Check the README for more info`);
       }
     },
