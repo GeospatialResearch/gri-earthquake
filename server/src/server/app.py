@@ -40,13 +40,21 @@ def earthquakes():
 def buildings_layer():
     """Requests building layer data"""
     kaiapoi_d = {
-        "wkt": ["POLYGON ((1570792 5196184, 1570730 5195134, 1572337 5195117, 1572264 5196045, 1570792 5196184))"]}
+        "wkt": [
+            "POLYGON ((172.662863 -43.352325, 172.652454 -43.361383, 172.662863 -43.352325, 172.652454 -43.361383, 172.639647 -43.389417, 172.641031 -43.397596, 172.657895 -43.397494, 172.674176 -43.383262, 172.67303 -43.355711, 172.662863 -43.352325, 172.639647 -43.389417, 172.641031 -43.397596, 172.657895 -43.397494, 172.674176 -43.383262, 172.67303 -43.355711, 172.662863 -43.352325))"
+            "POLYGON ((172.6596737 -43.3529568, 172.6596737 -43.3529568,
+            172.6543522, -43.3576375
+            172.6361561, -43.3981254
+            172.6688576, -43.3997469
+            172.6845646, -43.3557653
+            172.6596737, -43.3529568"
+        ]}
     df = pd.DataFrame(kaiapoi_d)
     gs = geopandas.GeoSeries.from_wkt(df['wkt'])
-    kaiapoi_gdf = geopandas.GeoDataFrame(df, geometry=gs, crs="epsg:2193")
+    kaiapoi_gdf = geopandas.GeoDataFrame(df, geometry=gs, crs="epsg:4326")
     linz = Linz(key=os.getenv("LINZ_KEY"), bounding_polygon=kaiapoi_gdf, verbose=True)
-    building_gdf = linz.run(101290).to_crs(4284)
-    building_gdf.to_file("buildings.geojson", driver='GeoJSON')
+    building_gdf = linz.run(101290)
+    building_gdf.geometry.to_file("buildings.geojson", driver='GeoJSON')
     return "Success"
 
 

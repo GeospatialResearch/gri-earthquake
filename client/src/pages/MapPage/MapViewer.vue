@@ -145,7 +145,7 @@ export default {
     },
 
     async getBuildingOutlines() {
-      const res = await fetch("buildings.geojson");
+      const res = await fetch("buildings_good.geojson");
       const data = await res.json();
       const dataProvider = new GeoJsonDataProvider("building-outlines", data);
       const buildingDataSource = new VectorTileDataSource({
