@@ -1,15 +1,11 @@
 import logging
-import os
 from itertools import count
 
-import geopandas
-import pandas as pd
 import requests
 from dotenv import load_dotenv
 from flask import Flask
 from flask import request
 from flask_cors import CORS
-from geoapis.vector import Linz
 
 app = Flask(__name__)
 
@@ -36,26 +32,26 @@ def earthquakes():
     return filtered_data
 
 
-@app.route('/buildings')
-def buildings_layer():
-    """Requests building layer data"""
-    kaiapoi_d = {
-        "wkt": [
-            "POLYGON ((172.662863 -43.352325, 172.652454 -43.361383, 172.662863 -43.352325, 172.652454 -43.361383, 172.639647 -43.389417, 172.641031 -43.397596, 172.657895 -43.397494, 172.674176 -43.383262, 172.67303 -43.355711, 172.662863 -43.352325, 172.639647 -43.389417, 172.641031 -43.397596, 172.657895 -43.397494, 172.674176 -43.383262, 172.67303 -43.355711, 172.662863 -43.352325))"
-            "POLYGON ((172.6596737 -43.3529568, 172.6596737 -43.3529568,
-            172.6543522, -43.3576375
-            172.6361561, -43.3981254
-            172.6688576, -43.3997469
-            172.6845646, -43.3557653
-            172.6596737, -43.3529568"
-        ]}
-    df = pd.DataFrame(kaiapoi_d)
-    gs = geopandas.GeoSeries.from_wkt(df['wkt'])
-    kaiapoi_gdf = geopandas.GeoDataFrame(df, geometry=gs, crs="epsg:4326")
-    linz = Linz(key=os.getenv("LINZ_KEY"), bounding_polygon=kaiapoi_gdf, verbose=True)
-    building_gdf = linz.run(101290)
-    building_gdf.geometry.to_file("buildings.geojson", driver='GeoJSON')
-    return "Success"
+# @app.route('/buildings')
+# def buildings_layer():
+#     """Requests building layer data"""
+#     kaiapoi_d = {
+#         "wkt": [
+#             "POLYGON ((172.662863 -43.352325, 172.652454 -43.361383, 172.662863 -43.352325, 172.652454 -43.361383, 172.639647 -43.389417, 172.641031 -43.397596, 172.657895 -43.397494, 172.674176 -43.383262, 172.67303 -43.355711, 172.662863 -43.352325, 172.639647 -43.389417, 172.641031 -43.397596, 172.657895 -43.397494, 172.674176 -43.383262, 172.67303 -43.355711, 172.662863 -43.352325))"
+#             "POLYGON ((172.6596737 -43.3529568, 172.6596737 -43.3529568,
+#             172.6543522, -43.3576375
+#             172.6361561, -43.3981254
+#             172.6688576, -43.3997469
+#             172.6845646, -43.3557653
+#             172.6596737, -43.3529568"
+#         ]}
+#     df = pd.DataFrame(kaiapoi_d)
+#     gs = geopandas.GeoSeries.from_wkt(df['wkt'])
+#     kaiapoi_gdf = geopandas.GeoDataFrame(df, geometry=gs, crs="epsg:4326")
+#     linz = Linz(key=os.getenv("LINZ_KEY"), bounding_polygon=kaiapoi_gdf, verbose=True)
+#     building_gdf = linz.run(101290)
+#     building_gdf.geometry.to_file("buildings.geojson", driver='GeoJSON')
+#     return "Success"
 
 
 def make_earthquake_request(payload):

@@ -1,17 +1,18 @@
 // Import external libraries and styles
-import Vue from 'vue'
-import VueResource from "vue-resource"
+import Vue from 'vue';
+import VueResource from "vue-resource";
 import VueRouter from "vue-router";
 import BootstrapVue from "bootstrap-vue";
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 // Import local modules and styles
-import App from '@/App.vue'
+import App from '@/App.vue';
 import routes from "@/routes";
 import store from "@/store";
 import title from "@/mixins/title";
-import "@/assets/base-style.css"
+import "@/assets/base-style.css";
+import {Ion} from "cesium";
 
 // Set plugins
 Vue.use(VueResource);
@@ -19,11 +20,14 @@ Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
 // Set mixins
-Vue.mixin(title)
+Vue.mixin(title);
 
 // Config settings
 Vue.http.options.emulateJson = true;
 Vue.config.productionTip = false;
+
+// Set Cesium variables
+Ion.defaultAccessToken = process.env.VUE_APP_CESIUM_ACCESS_TOKEN;
 
 // Create navigation router between pages
 const router = new VueRouter({
