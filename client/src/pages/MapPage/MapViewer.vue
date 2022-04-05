@@ -1,7 +1,7 @@
 <template>
   <!-- Provides a canvas to render the Harp.GL map -->
   <div>
-    <div id="cesiumContainer" class="fullSize" />
+    <div id="cesiumContainer" class="full-screen"></div>
   </div>
 </template>
 
@@ -41,9 +41,8 @@ export default {
 
 <style scoped>
 /* Renders the canvas below other objects and full screen */
-div.full-screen-map > canvas {
+div.full-screen >>> canvas {
   position: absolute;
-  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
