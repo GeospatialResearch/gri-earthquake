@@ -30,7 +30,7 @@ export default new Vuex.Store({
   },
 
   state: {
-    titlePrefix: 'NZ Earthquake Viewer',
+    titlePrefix: 'Digital Twin for Flood Resilience',
     loadingStatus: false, // Set to true if data is currently being retrieved
     startDate: dateFormatted(thirtyDaysAgo),
     endDate: dateFormatted(today),

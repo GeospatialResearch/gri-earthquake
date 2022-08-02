@@ -3,7 +3,7 @@
   <div>
     <b-navbar type="light" variant="light">
       <b-navbar-toggle target="nav-text-collapse" />
-      <b-navbar-brand :to="{name: 'Map'}">NZ Earthquake Viewer</b-navbar-brand>
+      <b-navbar-brand :to="{name: 'Map'}">Digital Twin for Flood Resilience</b-navbar-brand>
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item :to="{name: 'Map'}">Map</b-nav-item>
