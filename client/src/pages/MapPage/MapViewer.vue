@@ -33,31 +33,34 @@ export default {
   },
 
   mounted() {
-    this.viewer = new Cesium.Viewer("cesiumContainer", {
-      imageryProvider: new Cesium.OpenStreetMapImageryProvider({
-        url: 'https://stamen-tiles.a.ssl.fastly.net/toner-lite/',
-        fileExtension: 'png',
-        credit: 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.'
-      })
-    });
+    this.viewer = new Cesium.Viewer("cesiumContainer");
     this.viewer.camera.flyTo({destination: new Cesium.Cartesian3(-4612759.797689467, 593822.8330716471, -4365380.44925229)});
     this.addDataSources();
   },
 
   methods: {
     async addDataSources() {
-      const buildingDataSource = await Cesium.GeoJsonDataSource.load(
-          "kaiapoi_apr.geojson", {
-            stroke: Cesium.Color.HOTPINK,
-            fill: Cesium.Color.PINK.withAlpha(0.5),
+      const nonFloodBuildingDS = await Cesium.GeoJsonDataSource.load(
+          "non_flood_reproj.geojson", {
+            stroke: Cesium.Color.FORESTGREEN,
+            fill: Cesium.Color.DARKGREEN,
             strokeWidth: 3,
           });
-      this.viewer.dataSources.add(buildingDataSource);
-      for (const buildingEntity of buildingDataSource.entities.values) {
+      this.viewer.dataSources.add(nonFloodBuildingDS);
+      const floodBuildingDS = await Cesium.GeoJsonDataSource.load(
+          "flooded_reproj.geojson", {
+            stroke: Cesium.Color.RED,
+            fill: Cesium.Color.DARKRED,
+            strokeWidth: 3,
+          });
+      this.viewer.dataSources.add(floodBuildingDS);
+
+      const allBuildings = nonFloodBuildingDS.entities.values.concat(floodBuildingDS.entities.values);
+      for (const buildingEntity of allBuildings) {
         buildingEntity.polygon.extrudedHeight = 4;
       }
       this.viewer.imageryLayers.addImageryProvider(
-          new Cesium.IonImageryProvider({assetId: 918127})
+          new Cesium.IonImageryProvider({assetId: 946761})
       );
 
     }
